@@ -1,8 +1,4 @@
-# Write your MySQL query statement below
+/* Write your T-SQL query statement below */
 SELECT player_id, device_id
-FROM Activity 
-WHERE (player_id, event_date) IN (SELECT player_id, MIN(event_date)
-      FROM Activity
-      GROUP BY 1
-      )
-ORDER BY 1
+FROM (SELECT player_id,device_id, RANK()over(partition by player_id order by event_date) as rnk FROM activity) a
+WHERE rnk = 1
