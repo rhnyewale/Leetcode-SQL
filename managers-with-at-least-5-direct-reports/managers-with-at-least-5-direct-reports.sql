@@ -1,10 +1,5 @@
-# Write your MySQL query statement below
-WITH CTE AS(SELECT ManagerId
+/* Write your T-SQL query statement below */
+SELECT Name
 FROM Employee
-GROUP BY ManagerId
-HAVING COUNT(*) > 4)
-
-SELECT e.Name 
-FROM Employee e
-JOIN CTE c
-ON e.ID = c.ManagerId
+WHERE Id IN(SELECT ManagerId FROM Employee GROUP BY ManagerId
+HAVING COUNT(*)>4 ) 
