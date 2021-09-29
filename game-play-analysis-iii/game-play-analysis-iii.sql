@@ -1,8 +1,3 @@
-# Write your MySQL query statement below
-with cte as(
-    SELECT player_id, event_date, sum(games_played) over(partition by player_id order by event_date) as games_played_so_far
-    FROM Activity
-)
-
-SELECT *
-FROM cte
+/* Write your T-SQL query statement below */
+SELECT player_id, event_date, SUM(games_played) OVER(partition by player_id order by event_date) as games_played_so_far
+FROM activity
